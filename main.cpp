@@ -5,7 +5,7 @@
 std::string createCommandFZF() {
     std::string path = "~/projects";
     std::string excludes[3] = {"'*/.git*'", "'*/.godot*'", "'*/.vscode*'"};
-    std::string command = " ( tmux ls 2>/dev/null; find " + path + " -maxdepth 2 ";
+    std::string command = " ( tmux ls 2>/dev/null; find " + path + " -maxdepth 1 ";
     int excludesSize = sizeof(excludes) / sizeof(excludes[0]);
 
     for (int i = 0; i < excludesSize; i++) {
