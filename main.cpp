@@ -3,9 +3,10 @@
 #include <string>
 
 std::string createCommandFZF() {
-    std::string path = "~/projects";
+    std::string projectsPath = "~/projects";
+    std::string dotfilePath = "~/dotfiles";
     std::string excludes[3] = {"'*/.git*'", "'*/.godot*'", "'*/.vscode*'"};
-    std::string command = " ( tmux ls 2>/dev/null; find " + path + " -maxdepth 1 ";
+    std::string command = " ( tmux ls 2>/dev/null; find " + projectsPath + " -maxdepth 1 ";
     int excludesSize = sizeof(excludes) / sizeof(excludes[0]);
 
     for (int i = 0; i < excludesSize; i++) {
@@ -16,7 +17,7 @@ std::string createCommandFZF() {
         }
     }
 
-    command += " -print -type d ) | fzf";
+    command += " -print -type d; find " + dotfilePath + " -maxdepth 0 -print -type d;) | fzf";
     return command;
 }
 
